@@ -44,6 +44,7 @@ class Directory extends Component {
       ]
     };
   }
+
   render() {
     return (
       <div className="directory-menu">
