@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
 
-import { auth } from "./firebase/firebase.utils";
+import { auth, createProfileDocument } from "./firebase/firebase.utils";
 import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shoppage/shoppage.component";
 import Header from "./components/header/header.component";
@@ -20,10 +20,26 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user =>
-      this.setState({ currentUser: user }, () =>
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(
+      async userAuth => {
+        if (userAuth) {
+          const userRef = await createProfileDocument(userAuth);
+
+          //pegar os campos do document do usuário atual
+          userRef.onSnapshot(snapshot => {
+            this.setState({
+              currentUser: {
+                id: snapshot.id,
+                ...snapshot.data()
+              }
+            });
+          });
+        }
+      }
+
+      /* this.setState({ currentUser: user }, () =>
         console.log(this.state.currentUser)
-      )
+      ) */
     );
   }
 
