@@ -20,27 +20,26 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(
-      async userAuth => {
-        if (userAuth) {
-          const userRef = await createProfileDocument(userAuth);
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createProfileDocument(userAuth);
 
-          //pegar os campos do document do usuário atual
-          userRef.onSnapshot(snapshot => {
-            this.setState({
+        //pegar os campos do document do usuário atual
+        userRef.onSnapshot(snapshot => {
+          this.setState(
+            {
               currentUser: {
                 id: snapshot.id,
                 ...snapshot.data()
               }
-            });
-          });
-        }
+            },
+            () => console.log(this.state)
+          );
+        });
       }
 
-      /* this.setState({ currentUser: user }, () =>
-        console.log(this.state.currentUser)
-      ) */
-    );
+      this.setState({ currentUser: userAuth });
+    });
   }
 
   componentWillUnmount() {
