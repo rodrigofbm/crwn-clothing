@@ -26,15 +26,12 @@ class App extends Component {
 
         //pegar os campos do document do usuário atual
         userRef.onSnapshot(snapshot => {
-          this.setState(
-            {
-              currentUser: {
-                id: snapshot.id,
-                ...snapshot.data()
-              }
-            },
-            () => console.log(this.state)
-          );
+          this.setState({
+            currentUser: {
+              id: snapshot.id,
+              ...snapshot.data()
+            }
+          });
         });
       }
 
