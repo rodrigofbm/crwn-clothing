@@ -30,7 +30,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       };
 
     default:
-      return INITIAL_STATE;
+      return state;
   }
 };
 

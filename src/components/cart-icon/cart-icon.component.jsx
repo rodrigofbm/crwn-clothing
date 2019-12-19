@@ -17,11 +17,6 @@ const mapDispatchToProps = dispatch => ({
   toggleCartHidden: () => dispatch(toggleCartHidden())
 });
 
-const mapStateToProps = state => {
-  console.log("invocado"); //continua invocando
-  return {
-    itemCount: selectCartItemsCount(state)
-  };
-};
+const mapStateToProps = state => ({ itemCount: selectCartItemsCount(state) });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartIconComponent);

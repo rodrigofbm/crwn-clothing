@@ -22,11 +22,10 @@ class App extends Component {
       if (userAuth) {
         const userRef = await createProfileDocument(userAuth);
 
-        //pegar os campos do document do usuário atual
-        userRef.onSnapshot(snapshot => {
+        userRef.onSnapshot(snapShot => {
           setCurrentUser({
-            id: snapshot.id,
-            ...snapshot.data()
+            id: snapShot.id,
+            ...snapShot.data()
           });
         });
       }
