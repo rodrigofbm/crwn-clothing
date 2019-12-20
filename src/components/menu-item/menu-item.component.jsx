@@ -20,3 +20,5 @@ const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => (
 );
 
 export default withRouter(MenuItem);
+//withRouter é um HOC que nos dá acesso ao Objeto de navegação sem ter que ficar pando de pai para filho
+//onClick={() => history.push(`${match.url}${linkUrl}`)} é algo como 'somematchedUrl/linkUrl'

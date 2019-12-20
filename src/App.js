@@ -45,6 +45,7 @@ class App extends Component {
       <div>
         <Header />
         <Switch>
+          {/**Esses componentes filhos recebem o objeto de navegação, apenas esses diretamente. */}
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
           <Route
