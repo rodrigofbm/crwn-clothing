@@ -8,7 +8,7 @@ import {
   addItem
 } from "../../redux/cart/cart.actions";
 
-const CheckoutItemomponent = ({
+const CheckoutItemComponent = ({
   cartItem,
   clearItemFromCart,
   addItem,
@@ -49,4 +49,4 @@ const mapDispatchToProps = dispatch => ({
   removeItem: cartItem => dispatch(removeItem(cartItem))
 });
 
-export default connect(null, mapDispatchToProps)(CheckoutItemomponent);
+export default connect(null, mapDispatchToProps)(CheckoutItemComponent);
