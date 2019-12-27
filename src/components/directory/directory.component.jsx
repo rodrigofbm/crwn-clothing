@@ -1,16 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import "./directory.styles.scss";
-import { selectSections } from "../../redux/directory/directory.selectors";
 import MenuItem from "../menu-item/menu-item.component";
+import { selectSections } from "../../redux/directory/directory.selectors";
+import { DirectoryContainer } from "./directory.styles";
 
 const DirectoryComponent = ({ sections }) => (
-  <div className="directory-menu">
+  <DirectoryContainer>
     {sections.map(({ id, ...otherSectionsProps }) => (
       <MenuItem key={id} {...otherSectionsProps} />
     ))}
-  </div>
+  </DirectoryContainer>
 );
 
 const mapStateToProps = state => ({
