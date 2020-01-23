@@ -45,12 +45,14 @@ const CheckoutPage = ({ cartItems, total }) => (
     <TotalContainer>
       <span>TOTAL: R$ {total},00</span>
     </TotalContainer>
-    <WarningContainer>
-      *Please use the following test credit card for payments*
-      <br />
-      4242 4242 4242 4242 - Exp: 01/20 - CVC: 123
-    </WarningContainer>
-    <StripeButtonComponent price={total} />
+    {total > 0 && (
+      <WarningContainer>
+        *Please use the following test credit card for payments*
+        <br />
+        4242 4242 4242 4242 - Exp: 01/20 - CVC: 123
+      </WarningContainer>
+    )}
+    {total > 0 && <StripeButtonComponent price={total} />}
   </CheckoutPageContainer>
 );
 

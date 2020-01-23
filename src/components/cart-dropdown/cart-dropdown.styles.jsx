@@ -24,7 +24,7 @@ export const CartItemsContainer = styled.div`
   height: 240px;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  overflow: auto;
 `;
 
 export const CheckoutButton = styled(CustomButton)`
