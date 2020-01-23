@@ -75,8 +75,6 @@ export const transformCollectionsSnapshotToMap = collections => {
     };
   });
 
-  console.log("objects: ", objects);
-
   return objects;
 
   /* return transformedCollections.reduce((prev, collection) => {

@@ -9,6 +9,12 @@ export const CollectionPreviewContainer = styled.div`
 export const CollectionPreviewTitle = styled.h1`
   font-size: 28px;
   margin-bottom: 25px;
+  cursor: pointer;
+  transition: color 0.3s;
+
+  &:hover {
+    color: rgba(0, 0, 0, 0.5);
+  }
 `;
 
 export const Preview = styled.div`
