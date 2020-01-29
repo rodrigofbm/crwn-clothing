@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import "./App.css";
@@ -11,35 +11,29 @@ import CheckoutPage from "./pages/checkout/checkoutpage.component";
 import Header from "./components/header/header.component";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
 
-class App extends Component {
-  componentDidMount() {
-    const { checkUserSessionStart } = this.props;
-
+const App = ({ checkUserSessionStart, currentUser }) => {
+  useEffect(() => {
     checkUserSessionStart();
-  }
+  }, [checkUserSessionStart]);
 
-  render() {
-    const { currentUser } = this.props;
-
-    return (
-      <div>
-        <Header />
-        <Switch>
-          {/**Esses componentes filhos recebem o objeto de navegação, apenas esses diretamente. */}
-          <Route exact path="/" component={HomePage} />
-          <Route path="/shop" component={ShopPage} />
-          <Route
-            path="/signin"
-            render={() =>
-              currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />
-            }
-          />
-          <Route path="/checkout" component={CheckoutPage} />
-        </Switch>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <Header />
+      <Switch>
+        {/**Esses componentes filhos recebem o objeto de navegação, apenas esses diretamente. */}
+        <Route exact path="/" component={HomePage} />
+        <Route path="/shop" component={ShopPage} />
+        <Route
+          path="/signin"
+          render={() =>
+            currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />
+          }
+        />
+        <Route path="/checkout" component={CheckoutPage} />
+      </Switch>
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
   currentUser: selectCurrentUser(state)
