@@ -1,52 +1,48 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 
 import {
-  clearItemFromCart,
-  removeItem,
-  addItem
-} from "../../redux/cart/cart.actions";
-import {
-  CheckoutItemContainer,
-  CheckoutItemImage,
-  CheckoutItemPrice,
-  CheckoutItemQuantity,
-  CheckoutItemName,
-  RemoveButton
-} from "./checkout-item.styles";
-
-const CheckoutItemComponent = ({
-  cartItem,
   clearItemFromCart,
   addItem,
   removeItem
-}) => {
-  const { name, imageUrl, price, quantity } = cartItem;
+} from '../../redux/cart/cart.actions';
 
+import {
+  CheckoutItemContainer,
+  ImageContainer,
+  TextContainer,
+  QuantityContainer,
+  RemoveButtonContainer
+} from './checkout-item.styles';
+
+const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
+  const { name, imageUrl, price, quantity } = cartItem;
   return (
     <CheckoutItemContainer>
-      <CheckoutItemImage>
-        <img src={imageUrl} alt={name} />
-      </CheckoutItemImage>
-
-      <CheckoutItemName>{name}</CheckoutItemName>
-      <CheckoutItemQuantity>
+      <ImageContainer>
+        <img src={imageUrl} alt='item' />
+      </ImageContainer>
+      <TextContainer>{name}</TextContainer>
+      <QuantityContainer>
         <div onClick={() => removeItem(cartItem)}>&#10094;</div>
         <span>{quantity}</span>
         <div onClick={() => addItem(cartItem)}>&#10095;</div>
-      </CheckoutItemQuantity>
-      <CheckoutItemPrice>{price}</CheckoutItemPrice>
-      <RemoveButton onClick={() => clearItemFromCart(cartItem)}>
+      </QuantityContainer>
+      <TextContainer>{price}</TextContainer>
+      <RemoveButtonContainer onClick={() => clearItem(cartItem)}>
         &#10005;
-      </RemoveButton>
+      </RemoveButtonContainer>
     </CheckoutItemContainer>
   );
 };
 
 const mapDispatchToProps = dispatch => ({
-  clearItemFromCart: cartItem => dispatch(clearItemFromCart(cartItem)),
-  addItem: cartItem => dispatch(addItem(cartItem)),
-  removeItem: cartItem => dispatch(removeItem(cartItem))
+  clearItem: item => dispatch(clearItemFromCart(item)),
+  addItem: item => dispatch(addItem(item)),
+  removeItem: item => dispatch(removeItem(item))
 });
 
-export default connect(null, mapDispatchToProps)(CheckoutItemComponent);
+export default connect(
+  null,
+  mapDispatchToProps
+)(CheckoutItem);

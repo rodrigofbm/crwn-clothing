@@ -1,8 +1,4 @@
-import styled, { css } from "styled-components";
-
-const infosWidth = css`
-  width: 23%;
-`;
+import styled from 'styled-components';
 
 export const CheckoutItemContainer = styled.div`
   width: 100%;
@@ -14,7 +10,7 @@ export const CheckoutItemContainer = styled.div`
   align-items: center;
 `;
 
-export const CheckoutItemImage = styled.div`
+export const ImageContainer = styled.div`
   width: 23%;
   padding-right: 15px;
 
@@ -24,29 +20,23 @@ export const CheckoutItemImage = styled.div`
   }
 `;
 
-export const CheckoutItemPrice = styled.span`
-  ${infosWidth}
+export const TextContainer = styled.span`
+  width: 23%;
 `;
 
-export const CheckoutItemQuantity = styled.span`
+export const QuantityContainer = styled(TextContainer)`
   display: flex;
-
-  div {
-    cursor: pointer;
-  }
 
   span {
     margin: 0 10px;
   }
 
-  ${infosWidth}
+  div {
+    cursor: pointer;
+  }
 `;
 
-export const CheckoutItemName = styled.span`
-  ${infosWidth}
-`;
-
-export const RemoveButton = styled.div`
+export const RemoveButtonContainer = styled.div`
   padding-left: 12px;
   cursor: pointer;
 `;
